@@ -28,25 +28,19 @@ public class MvcRoute : RouteModel
 And then, when creating link in Razor's `.cshtml`, we can use:
 
 ```Razor
-
 @Html.RouteLink(new MvcRoute("Home", "Index"))
-
 ```
 
 This is a bit better, but not that much. Let's see how we can declare route from blog post. We want url in form like `blog/{Year}/{Month}/{Day}/{Slug}`. In the standart MVC, we need to create route link like this:
 
 ```Razor
-
 @Html.RouteLink("BlogPost", new { Year = post.PublishedAt.Year, Month = post.PublishedAt.Month, post.PublishedAt.Day, Slug = post.Slug })
-
 ```
 
 But when using `Neptuo.AspNet.Navigation`, we can do the same with this code:
 
 ```Razor
-
 @Html.RouteLink(new BlogPostRoute(post.PublishedAt, post.Slug))
-
 ```
 
 We also benefit from the fact, then the model can deconstruct the date itself. So route model is defined like:
@@ -77,9 +71,7 @@ public class BlogPostRoute : RouteModel
 The registration process is pretty straightforward, just add the model to the route collection:
 
 ```C#
-
     routes.Add<BlogPostRoute>();
-
 ```
 
 # License
