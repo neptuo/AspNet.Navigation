@@ -68,10 +68,10 @@ public class BlogPostRoute : RouteModel
 
 ## Route registration
 
-The registration process is pretty straightforward, just add the model to the route collection:
+The registration process is pretty straightforward, just add the model to the route collection using extension method:
 
 ```C#
-    routes.Add<BlogPostRoute>();
+routes.Add<BlogPostRoute>();
 ```
 
 ## Reading the parameters in the controller action method
