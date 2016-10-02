@@ -1,7 +1,7 @@
 # AspNet.Navigation
 Model (class) base navigation and routing for ASP.NET (Core) MVC
 
-# Introduction
+## Introduction
 
 The ASP.NET routing and link creation is missing type safety. In this library the routing is based on models, a C# define classes for each route. We can quite simply satify default route from MVC with model:
 
@@ -66,7 +66,7 @@ public class BlogPostRoute : RouteModel
 
 ```
 
-# Route registration
+## Route registration
 
 The registration process is pretty straightforward, just add the model to the route collection:
 
@@ -74,6 +74,23 @@ The registration process is pretty straightforward, just add the model to the ro
     routes.Add<BlogPostRoute>();
 ```
 
+## Reading the parameters in the controller action method
+
+We can easily use the route class in the parameter of action method to bind-in parameters:
+
+```C#
+
+public class BlogController
+{
+
+    public ActionResult Post(BlogPostRoute parameters)
+    {
+        // TODO: Find blog post by Year, Month, Day and Slug...
+    }
+}
+
+
+```
 # License
 
 [Apache 2.0](LICENSE)
