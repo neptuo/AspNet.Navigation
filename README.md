@@ -82,7 +82,6 @@ We can easily use the route class in the parameter of action method to bind-in p
 
 public class BlogController
 {
-
     public ActionResult Post(BlogPostRoute parameters)
     {
         // TODO: Find blog post by Year, Month, Day and Slug...
