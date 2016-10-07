@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRouteDefaultProvider.cs" />
+    <Compile Include="RouteDefaultAttribute.cs" />
     <Compile Include="RouteNameAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteUrlAttribute.cs" />
