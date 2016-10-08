@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRouteDefaultProvider.cs" />
+    <Compile Include="RouteControllerAttribute.cs" />
     <Compile Include="RouteDefaultAttribute.cs" />
     <Compile Include="RouteNameAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
