@@ -28,7 +28,7 @@ public class MvcRoute : RouteModel
 And then, when creating link in Razor's `.cshtml`, we can use:
 
 ```Razor
-@Html.RouteLink(new MvcRoute("Home", "Index"))
+@Html.RouteLink("Go Home!", new MvcRoute("Home", "Index"))
 ```
 
 This is a bit better, but not that much. Let's see how we can declare route from blog post. We want url in form like `blog/{Year}/{Month}/{Day}/{Slug}`. In the standart MVC, we need to create route link like this:
