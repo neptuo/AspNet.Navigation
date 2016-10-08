@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.AspNet.Navigation.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Neptuo.AspNet.Navigation
     /// Defines the route URL.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class RouteUrlAttribute : Attribute
+    public class RouteUrlAttribute : Attribute, IRouteUrlProvider
     {
         /// <summary>
         /// Gets the route URL.
@@ -27,6 +28,11 @@ namespace Neptuo.AspNet.Navigation
                 throw new ArgumentNullException("url");
 
             Url = url;
+        }
+
+        public string GetUrl()
+        {
+            return Uri;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neptuo.AspNet.Navigation
+namespace Neptuo.AspNet.Navigation.Metadata
 {
     /// <summary>
     /// The singleton class used in extension methods for registering routes, creating URLs and links.

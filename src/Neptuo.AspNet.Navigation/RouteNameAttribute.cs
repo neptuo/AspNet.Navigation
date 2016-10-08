@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.AspNet.Navigation.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Neptuo.AspNet.Navigation
     /// Defines the name of the route.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class RouteNameAttribute : Attribute
+    public class RouteNameAttribute : Attribute, IRouteNameProvider
     {
         /// <summary>
         /// Gets the name of the route.
@@ -30,6 +31,11 @@ namespace Neptuo.AspNet.Navigation
         public RouteNameAttribute(string name)
         {
             Name = name;
+        }
+
+        public string GetName()
+        {
+            return Name;
         }
     }
 }
