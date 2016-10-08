@@ -32,7 +32,7 @@ namespace Neptuo.AspNet.Navigation
 
         public string GetUrl()
         {
-            return Uri;
+            return Url;
         }
     }
 }

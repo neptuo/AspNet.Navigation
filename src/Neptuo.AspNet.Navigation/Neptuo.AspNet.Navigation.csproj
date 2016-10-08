@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Metadata\DefaultRouteModelCollection.cs" />
+    <Compile Include="Metadata\CacheRouteModelProvider.cs" />
+    <Compile Include="Metadata\DefaultRouteModel.cs" />
+    <Compile Include="Metadata\ReflectionRouteModelProvider.cs" />
     <Compile Include="Metadata\IRouteDefaultProvider.cs" />
-    <Compile Include="Metadata\IRouteModelCollection.cs" />
+    <Compile Include="Metadata\IRouteModel.cs" />
+    <Compile Include="Metadata\IRouteModelProvider.cs" />
     <Compile Include="Metadata\IRouteNameProvider.cs" />
     <Compile Include="Metadata\IRouteUrlProvider.cs" />
     <Compile Include="RouteControllerAttribute.cs" />

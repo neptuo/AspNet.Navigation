@@ -11,27 +11,27 @@ namespace Neptuo.AspNet.Navigation.Metadata
     /// </summary>
     public static class RouteModel
     {
-        private static IRouteModelCollection collection = new DefaultRouteModelCollection();
+        private static IRouteModelProvider provider = new CacheRouteModelProvider(new ReflectionRouteModelProvider());
 
         /// <summary>
-        /// Gets the singleton of the <see cref="IRouteModelCollection"/>.
+        /// Gets the singleton of the <see cref="IRouteModelProvider"/>.
         /// </summary>
-        public static IRouteModelCollection Collection
+        public static IRouteModelProvider Provider
         {
-            get { return collection; }
+            get { return provider; }
         }
 
         /// <summary>
-        /// Sets the singleton of the <see cref="IRouteModelCollection"/>.
+        /// Sets the singleton of the <see cref="IRouteModelProvider"/>.
         /// </summary>
-        /// <param name="collection">The instalce of collection to be used.</param>
-        /// <exception cref="ArgumentNullException">When the <paramref name="collection"/> is <c>null</c>.</exception>
-        public static void SetCollection(IRouteModelCollection collection)
+        /// <param name="provider">The instalce of collection to be used.</param>
+        /// <exception cref="ArgumentNullException">When the <paramref name="provider"/> is <c>null</c>.</exception>
+        public static void SetCollection(IRouteModelProvider provider)
         {
-            if (collection == null)
+            if (provider == null)
                 throw new ArgumentNullException("collection");
 
-            RouteModel.collection = collection;
+            RouteModel.provider = provider;
         }
     }
 }
