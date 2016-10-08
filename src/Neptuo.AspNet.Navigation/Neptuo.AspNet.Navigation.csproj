@@ -72,7 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\MvcExtensions.cs" />
+    <Compile Include="Extensions\LinkExtensions.cs" />
+    <Compile Include="Extensions\RouteCollectionExtensions.cs" />
+    <Compile Include="Extensions\UrlExtensions.cs" />
     <Compile Include="Metadata\CacheRouteModelProvider.cs" />
     <Compile Include="Metadata\DefaultRouteModel.cs" />
     <Compile Include="Metadata\ReflectionRouteModelProvider.cs" />
