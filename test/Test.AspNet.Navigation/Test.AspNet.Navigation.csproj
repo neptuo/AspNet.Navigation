@@ -97,7 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Neptuo.AspNet.Navigation\Neptuo.AspNet.Navigation.csproj">
+    <ProjectReference Include="..\..\src\Neptuo.AspNet.Navigation\Neptuo.AspNet.Navigation.csproj">
       <Project>{5879ab85-daa8-45f8-b4eb-66032963d17f}</Project>
       <Name>Neptuo.AspNet.Navigation</Name>
     </ProjectReference>

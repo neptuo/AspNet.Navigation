@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.AspNet.Navigation", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.AspNet.Navigation", "test\Test.AspNet.Navigation\Test.AspNet.Navigation.csproj", "{0A6C19D0-D867-4019-82DB-4EBAB141247C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.AspNet.Navigation", "sample\Sample.AspNet.Navigation\Sample.AspNet.Navigation.csproj", "{DF2311BF-FB75-4B62-9E35-7C67C914CBEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0A6C19D0-D867-4019-82DB-4EBAB141247C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A6C19D0-D867-4019-82DB-4EBAB141247C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A6C19D0-D867-4019-82DB-4EBAB141247C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2311BF-FB75-4B62-9E35-7C67C914CBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2311BF-FB75-4B62-9E35-7C67C914CBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2311BF-FB75-4B62-9E35-7C67C914CBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2311BF-FB75-4B62-9E35-7C67C914CBEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

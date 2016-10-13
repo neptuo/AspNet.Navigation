@@ -1,0 +1,33 @@
+﻿@using Neptuo.AspNet.Navigation
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample usage of Neptuo.AspNet.Navigation</title>
+</head>
+<body>
+    <ul>
+        <li>@Url.ModelUrl(new MvcRoute("Home", "Index"))</li>
+        <li>@Url.ModelUrl(new MvcRoute("Home", "About"))</li>
+        <li>@Url.ModelUrl(new MvcRoute("Home", "Contact"))</li>
+        <li>@Url.ModelUrl(new BlogPostRoute(DateTime.Today, "first-post"))</li>
+        <li>@Url.ModelUrl(new ProjectRoute("first-project"))</li>
+        <li>@Url.ModelUrl(new ProjectRoute("secord-project"))</li>
+    </ul>
+    <hr />
+    <ul>
+        <li>@Html.ModelLink("Home", new MvcRoute("Home", "Index"))</li>
+        <li>@Html.ModelLink("About", new MvcRoute("Home", "About"))</li>
+        <li>@Html.ModelLink("Contact", new MvcRoute("Home", "Contact"))</li>
+        <li>@Html.ModelLink("First blog post", new BlogPostRoute(DateTime.Today, "first-post"))</li>
+        <li>@Html.ModelLink("First project", new ProjectRoute("first-project"))</li>
+        <li>@Html.ModelLink("Second project", new ProjectRoute("secord-project"))</li>
+    </ul>
+    <hr />
+    @ViewBag.Message
+</body>
+</html>
