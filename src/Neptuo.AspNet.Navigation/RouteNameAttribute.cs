@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Neptuo.AspNet.Navigation
 {
     /// <summary>
-    /// Defines the name of the route.
+    /// Defines a name of the route.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class RouteNameAttribute : Attribute, IRouteNameProvider
@@ -33,7 +33,7 @@ namespace Neptuo.AspNet.Navigation
             Name = name;
         }
 
-        public string GetName()
+        string IRouteNameProvider.GetName()
         {
             return Name;
         }

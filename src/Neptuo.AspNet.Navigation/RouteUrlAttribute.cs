@@ -30,7 +30,7 @@ namespace Neptuo.AspNet.Navigation
             Url = url;
         }
 
-        public string GetUrl()
+        string IRouteUrlProvider.GetUrl()
         {
             return Url;
         }

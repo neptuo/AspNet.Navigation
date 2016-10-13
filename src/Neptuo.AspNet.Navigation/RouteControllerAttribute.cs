@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Neptuo.AspNet.Navigation
 {
+    /// <summary>
+    /// Defaults <c>Controller</c> and <c>Action</c> defaults for the route.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class RouteControllerAttribute : Attribute, IRouteDefaultProvider
     {
@@ -31,7 +34,7 @@ namespace Neptuo.AspNet.Navigation
             Action = action;
         }
 
-        public IEnumerable<KeyValuePair<string, object>> GetKeyValues()
+        IEnumerable<KeyValuePair<string, object>> IRouteDefaultProvider.GetKeyValues()
         {
             return new List<KeyValuePair<string, object>>()
             {

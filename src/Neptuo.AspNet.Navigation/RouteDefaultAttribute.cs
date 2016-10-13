@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Neptuo.AspNet.Navigation
 {
     /// <summary>
-    /// Defines the default values for the route.
+    /// Defines a default key-value for the route.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class RouteDefaultAttribute : Attribute, IRouteDefaultProvider
@@ -37,7 +37,7 @@ namespace Neptuo.AspNet.Navigation
             Value = value;
         }
 
-        public IEnumerable<KeyValuePair<string, object>> GetKeyValues()
+        IEnumerable<KeyValuePair<string, object>> IRouteDefaultProvider.GetKeyValues()
         {
             return new List<KeyValuePair<string, object>>()
             {
