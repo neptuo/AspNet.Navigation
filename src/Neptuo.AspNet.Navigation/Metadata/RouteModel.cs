@@ -26,7 +26,7 @@ namespace Neptuo.AspNet.Navigation.Metadata
         /// </summary>
         /// <param name="provider">The instalce of collection to be used.</param>
         /// <exception cref="ArgumentNullException">When the <paramref name="provider"/> is <c>null</c>.</exception>
-        public static void SetCollection(IRouteModelProvider provider)
+        public static void SetProvider(IRouteModelProvider provider)
         {
             if (provider == null)
                 throw new ArgumentNullException("collection");
