@@ -35,6 +35,14 @@ namespace System.Web.Mvc
             Execute("/Home/Index/6", new MvcRoute("Home", "Index", 6));
         }
 
+        [TestMethod]
+        [TestCategory("Extensions.Url")]
+        public void Project()
+        {
+            Execute("/project/hello-world", new ProjectRoute("hello-world"));
+        }
+
+
 
         public const string Origin = "http://localhost";
 
