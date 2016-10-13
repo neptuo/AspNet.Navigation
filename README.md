@@ -76,7 +76,8 @@ routes.MapModel<BlogPostRoute>();
 
 ## Reading the parameters in the controller action method
 
-We can easily use the route class in the parameter of action method to bind-in parameters:
+We can easily use the route class in the parameter of action method to bind-in parameters. Note that for this use the property setters
+must be public.
 
 ```C#
 
