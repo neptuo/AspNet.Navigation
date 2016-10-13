@@ -10,6 +10,7 @@ namespace Neptuo.AspNet.Navigation
     /// Un-named route with custom defaults.
     /// </summary>
     [RouteUrl("{controller}/{action}/{id}")]
+    [RouteController("Home", "Index")]
     [RouteDefault("id", null)]
     public class MvcRoute
     {

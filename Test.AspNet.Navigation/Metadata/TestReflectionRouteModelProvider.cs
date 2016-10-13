@@ -27,20 +27,24 @@ namespace Neptuo.AspNet.Navigation.Metadata
 
         [TestMethod]
         [TestCategory("Metadata.Reflection")]
-        public void MvcRoute()
+        public void Mvc()
         {
             ReflectionRouteModelProvider modelProvider = new ReflectionRouteModelProvider();
             IRouteModel model = modelProvider.Get(typeof(MvcRoute));
             Assert.AreEqual(null, model.Name);
             Assert.AreEqual("{controller}/{action}/{id}", model.Url);
-            Assert.AreEqual(1, model.Defaults.Count);
+            Assert.AreEqual(3, model.Defaults.Count);
+            Assert.AreEqual(true, model.Defaults.ContainsKey("Controller"));
+            Assert.AreEqual("Home", model.Defaults["Controller"]);
+            Assert.AreEqual(true, model.Defaults.ContainsKey("Action"));
+            Assert.AreEqual("Index", model.Defaults["Action"]);
             Assert.AreEqual(true, model.Defaults.ContainsKey("id"));
             Assert.AreEqual(null, model.Defaults["id"]);
         }
 
         [TestMethod]
         [TestCategory("Metadata.Reflection")]
-        public void ProjectRoute()
+        public void Project()
         {
             ReflectionRouteModelProvider modelProvider = new ReflectionRouteModelProvider();
             IRouteModel model = modelProvider.Get(typeof(ProjectRoute));
