@@ -10,21 +10,21 @@ namespace Neptuo.AspNet.Navigation
     /// Named route with defaults for controller and action.
     /// </summary>
     [RouteName("BlogPost")]
-    [RouteUrl("blog/{year}/{month}/{day}/{url}")]
+    [RouteUrl("blog/{year}/{month}/{day}/{slug}")]
     [RouteController("Home", "Blog")]
     public class BlogPostRoute
     {
         public int Year { get; private set; }
         public int Month { get; private set; }
         public int Day { get; private set; }
-        public string Url { get; private set; }
+        public string Slug { get; private set; }
 
-        public BlogPostRoute(DateTime publishedAt, string url)
+        public BlogPostRoute(DateTime publishedAt, string slug)
         {
             Year = publishedAt.Year;
             Month = publishedAt.Month;
             Day = publishedAt.Day;
-            Url = url;
+            Slug = slug;
         }
     }
 }

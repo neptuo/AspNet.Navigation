@@ -20,9 +20,9 @@ namespace System.Web.Mvc
             string year = "2016";
             string month = "10";
             string day = "13";
-            string url = "first-post";
+            string slug = "first-post";
 
-            HttpContextBase httpContext = PrepareHttpContext("/blog/" + year + "/" + month + "/" + day + "/" + url);
+            HttpContextBase httpContext = PrepareHttpContext("/blog/" + year + "/" + month + "/" + day + "/" + slug);
 
             RouteCollection routes = new RouteCollection();
             routes.MapModel<BlogPostRoute>();
@@ -41,8 +41,8 @@ namespace System.Web.Mvc
             Assert.AreEqual(month, data.Values["month"]);
             Assert.AreEqual(true, data.Values.ContainsKey("day"));
             Assert.AreEqual(day, data.Values["day"]);
-            Assert.AreEqual(true, data.Values.ContainsKey("url"));
-            Assert.AreEqual(url, data.Values["url"]);
+            Assert.AreEqual(true, data.Values.ContainsKey("slug"));
+            Assert.AreEqual(slug, data.Values["slug"]);
         }
 
         public const string Origin = "http://localhost";

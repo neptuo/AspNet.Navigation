@@ -17,7 +17,7 @@ namespace Neptuo.AspNet.Navigation.Metadata
             ReflectionRouteModelProvider modelProvider = new ReflectionRouteModelProvider();
             IRouteModel model = modelProvider.Get(typeof(BlogPostRoute));
             Assert.AreEqual("BlogPost", model.Name);
-            Assert.AreEqual("blog/{year}/{month}/{day}/{url}", model.Url);
+            Assert.AreEqual("blog/{year}/{month}/{day}/{slug}", model.Url);
             Assert.AreEqual(2, model.Defaults.Count);
             Assert.AreEqual(true, model.Defaults.ContainsKey("Controller"));
             Assert.AreEqual("Blog", model.Defaults["Controller"]);
