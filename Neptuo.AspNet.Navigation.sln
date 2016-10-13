@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.AspNet.Navigation", "src\Neptuo.AspNet.Navigation\Neptuo.AspNet.Navigation.csproj", "{5879AB85-DAA8-45F8-B4EB-66032963D17F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.AspNet.Navigation", "Test.AspNet.Navigation\Test.AspNet.Navigation.csproj", "{0A6C19D0-D867-4019-82DB-4EBAB141247C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.AspNet.Navigation", "test\Test.AspNet.Navigation\Test.AspNet.Navigation.csproj", "{0A6C19D0-D867-4019-82DB-4EBAB141247C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
