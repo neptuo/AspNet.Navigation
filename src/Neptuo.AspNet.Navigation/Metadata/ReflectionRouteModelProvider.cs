@@ -50,7 +50,7 @@ namespace Neptuo.AspNet.Navigation.Metadata
                 IRouteDefaultProvider defaultProvider = attribute as IRouteDefaultProvider;
                 if (defaultProvider != null)
                 {
-                    IEnumerable<KeyValuePair<string, object>> items = defaultProvider.GetKeyValues();
+                    IEnumerable<KeyValuePair<string, object>> items = defaultProvider.GetUrlDefaults();
                     if (items != null)
                     {
                         foreach (KeyValuePair<string, object> item in items)
