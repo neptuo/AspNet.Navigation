@@ -86,6 +86,7 @@
     <Compile Include="Metadata\IRouteModelProvider.cs" />
     <Compile Include="Metadata\IRouteNameProvider.cs" />
     <Compile Include="Metadata\IRouteUrlProvider.cs" />
+    <Compile Include="RouteConstraintAttribute.cs" />
     <Compile Include="RouteControllerAttribute.cs" />
     <Compile Include="RouteDefaultAttribute.cs" />
     <Compile Include="Metadata\RouteModel.cs" />
