@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Neptuo.AspNet.Navigation
 {
     /// <summary>
-    /// Defines constraint for route URL parameter.
+    /// Defines constraint for route URL parameter as C# regex pattern.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class RouteConstraintRegexAttribute : Attribute, IRouteConstraintProvider
