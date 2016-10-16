@@ -18,7 +18,7 @@ namespace System.Web.Mvc
         [TestCategory("Extensions.Url")]
         public void BlogPost()
         {
-            Execute("/blog/2016/10/13/first-post", new BlogPostRoute(DateTime.Now, "first-post"));
+            Execute("/blog/2016/10/13/first-post", new BlogPostRoute(new DateTime(2016, 10, 13), "first-post"));
         }
 
         [TestMethod]
