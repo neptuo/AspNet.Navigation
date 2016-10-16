@@ -12,7 +12,7 @@ namespace Neptuo.AspNet.Navigation
     [RouteUrl("{controller}/{action}/{id}")]
     [RouteController("Home", "Index")]
     [RouteDefault("id", null)]
-    [RouteConstraintRegex("id", @"\d+")]
+    [RouteConstraintRegex("id", @"\d*")]
     public class MvcRoute
     {
         public string Controller { get; private set; }
