@@ -11,7 +11,7 @@ namespace Neptuo.AspNet.Navigation
     /// Defines constraint for route URL parameter.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class RouteConstraintAttribute : Attribute, IRouteConstraintProvider
+    public class RouteConstraintRegexAttribute : Attribute, IRouteConstraintProvider
     {
         /// <summary>
         /// Gets the name of the parameter.
@@ -28,7 +28,7 @@ namespace Neptuo.AspNet.Navigation
         /// </summary>
         /// <param name="parameterName">The name of the parameter.</param>
         /// <param name="constraint">The constraint of the parameter.</param>
-        public RouteConstraintAttribute(string parameterName, string constraint)
+        public RouteConstraintRegexAttribute(string parameterName, string constraint)
         {
             if (string.IsNullOrEmpty(parameterName))
                 throw new ArgumentNullException("parameterName");
@@ -40,11 +40,11 @@ namespace Neptuo.AspNet.Navigation
             Constraint = constraint;
         }
 
-        IEnumerable<KeyValuePair<string, string>> IRouteConstraintProvider.GetUrlConstraints()
+        IEnumerable<KeyValuePair<string, object>> IRouteConstraintProvider.GetUrlConstraints()
         {
-            return new List<KeyValuePair<string, string>>()
+            return new List<KeyValuePair<string, object>>()
             {
-                new KeyValuePair<string, string>(ParameterName, Constraint)
+                new KeyValuePair<string, object>(ParameterName, Constraint)
             };
         }
     }
