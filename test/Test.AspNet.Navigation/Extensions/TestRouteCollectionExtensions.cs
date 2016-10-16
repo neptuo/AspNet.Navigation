@@ -45,6 +45,41 @@ namespace System.Web.Mvc
             Assert.AreEqual(slug, data.Values["slug"]);
         }
 
+        [TestMethod]
+        [TestCategory("Extensions.RouteCollection")]
+        public void MvcWithId()
+        {
+            HttpContextBase httpContext = PrepareHttpContext("/Home/Index/5");
+
+            RouteCollection routes = new RouteCollection();
+            routes.MapModel<MvcRoute>();
+
+            RouteData data = routes.GetRouteData(httpContext);
+            Assert.IsNotNull(data);
+
+            Assert.AreEqual(3, data.Values.Count);
+            Assert.AreEqual(true, data.Values.ContainsKey("Controller"));
+            Assert.AreEqual("Home", data.Values["Controller"]);
+            Assert.AreEqual(true, data.Values.ContainsKey("Action"));
+            Assert.AreEqual("Index", data.Values["Action"]);
+            Assert.AreEqual(true, data.Values.ContainsKey("Id"));
+            Assert.AreEqual("5", data.Values["Id"]);
+        }
+
+        [TestMethod]
+        [TestCategory("Extensions.RouteCollection")]
+        public void MvcWithInvalidId()
+        {
+            HttpContextBase httpContext = PrepareHttpContext("/Home/Index/abc");
+
+            RouteCollection routes = new RouteCollection();
+            routes.MapModel<MvcRoute>();
+
+            RouteData data = routes.GetRouteData(httpContext);
+            Assert.IsNull(data);
+        }
+
+
         public const string Origin = "http://localhost";
 
         private HttpContextBase PrepareHttpContext(string supportedPath)

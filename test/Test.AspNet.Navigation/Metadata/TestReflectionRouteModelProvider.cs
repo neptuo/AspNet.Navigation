@@ -40,6 +40,9 @@ namespace Neptuo.AspNet.Navigation.Metadata
             Assert.AreEqual("Index", model.Defaults["Action"]);
             Assert.AreEqual(true, model.Defaults.ContainsKey("id"));
             Assert.AreEqual(null, model.Defaults["id"]);
+            Assert.AreEqual(1, model.Constraints.Count);
+            Assert.AreEqual(true, model.Constraints.ContainsKey("id"));
+            Assert.AreEqual(@"\d+", model.Constraints["id"]);
         }
 
         [TestMethod]
