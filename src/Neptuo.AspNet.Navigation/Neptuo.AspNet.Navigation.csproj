@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\_AssemblyInfo.cs">
+      <Link>Properties\_AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Extensions\FormExtensions.cs" />
     <Compile Include="Extensions\LinkExtensions.cs" />
     <Compile Include="Extensions\RedirectToModelResult.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Metadata\IRouteModelProvider.cs" />
     <Compile Include="Metadata\IRouteNameProvider.cs" />
     <Compile Include="Metadata\IRouteUrlProvider.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="RouteConstraintRegexAttribute.cs" />
     <Compile Include="RouteControllerAttribute.cs" />
     <Compile Include="RouteDefaultAttribute.cs" />
