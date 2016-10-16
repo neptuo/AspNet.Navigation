@@ -25,5 +25,10 @@ namespace Neptuo.AspNet.Navigation.Metadata
         /// Gets the defaults values of the route.
         /// </summary>
         IDictionary<string, object> Defaults { get; }
+
+        /// <summary>
+        /// Gets constraints for the route parameters.
+        /// </summary>
+        IDictionary<string, object> Constraints { get; }
     }
 }

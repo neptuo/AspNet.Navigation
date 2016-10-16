@@ -33,7 +33,7 @@ namespace Neptuo.AspNet.Navigation
             return url;
         }
 
-        public IEnumerable<KeyValuePair<string, object>> GetUrlDefaults()
+        public IEnumerable<KeyValuePair<string, object>> GetDefaults()
         {
             Dictionary<string, object> defaults = new Dictionary<string, object>();
             defaults["Controller"] = "Home";

@@ -37,7 +37,7 @@ namespace Neptuo.AspNet.Navigation
             Value = value;
         }
 
-        IEnumerable<KeyValuePair<string, object>> IRouteDefaultProvider.GetUrlDefaults()
+        IEnumerable<KeyValuePair<string, object>> IRouteDefaultProvider.GetDefaults()
         {
             return new List<KeyValuePair<string, object>>()
             {

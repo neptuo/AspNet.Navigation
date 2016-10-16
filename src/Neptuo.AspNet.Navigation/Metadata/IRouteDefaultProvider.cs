@@ -15,6 +15,6 @@ namespace Neptuo.AspNet.Navigation.Metadata
         /// Returns the enumeration of key-value pairs for the route defauls.
         /// </summary>
         /// <returns>The enumeration of key-value pairs for the route defauls.</returns>
-        IEnumerable<KeyValuePair<string, object>> GetUrlDefaults();
+        IEnumerable<KeyValuePair<string, object>> GetDefaults();
     }
 }

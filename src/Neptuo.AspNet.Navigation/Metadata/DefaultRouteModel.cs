@@ -14,5 +14,6 @@ namespace Neptuo.AspNet.Navigation.Metadata
         public string Name { get; set; }
         public string Url { get; set; }
         public IDictionary<string, object> Defaults { get; set; }
+        public IDictionary<string, object> Constraints { get; set; }
     }
 }

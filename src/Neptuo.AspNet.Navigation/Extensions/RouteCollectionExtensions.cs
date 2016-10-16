@@ -28,7 +28,8 @@ namespace System.Web.Mvc
             return routes.MapRoute(
                 name: model.Name,
                 url: model.Url,
-                defaults: model.Defaults
+                defaults: model.Defaults,
+                constraints: model.Constraints
             );
         }
     }

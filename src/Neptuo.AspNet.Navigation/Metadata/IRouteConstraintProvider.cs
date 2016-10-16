@@ -15,6 +15,6 @@ namespace Neptuo.AspNet.Navigation.Metadata
         /// Returns the enumeration of key-value pairs for the route parameters constraints.
         /// </summary>
         /// <returns>The enumeration of key-value pairs for the route parameters constraints.</returns>
-        IEnumerable<KeyValuePair<string, object>> GetUrlConstraints();
+        IEnumerable<KeyValuePair<string, object>> GetConstraints();
     }
 }

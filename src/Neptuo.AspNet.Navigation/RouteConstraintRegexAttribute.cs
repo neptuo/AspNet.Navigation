@@ -40,7 +40,7 @@ namespace Neptuo.AspNet.Navigation
             Constraint = constraint;
         }
 
-        IEnumerable<KeyValuePair<string, object>> IRouteConstraintProvider.GetUrlConstraints()
+        IEnumerable<KeyValuePair<string, object>> IRouteConstraintProvider.GetConstraints()
         {
             return new List<KeyValuePair<string, object>>()
             {

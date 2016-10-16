@@ -22,6 +22,7 @@ namespace Neptuo.AspNet.Navigation.Metadata
             bool hasUrl = false;
             string url = null;
             Dictionary<string, object> defaults = new Dictionary<string, object>();
+            Dictionary<string, object> constraints = new Dictionary<string, object>();
 
             foreach (Attribute attribute in modelType.GetCustomAttributes(true))
             {
@@ -50,11 +51,22 @@ namespace Neptuo.AspNet.Navigation.Metadata
                 IRouteDefaultProvider defaultProvider = attribute as IRouteDefaultProvider;
                 if (defaultProvider != null)
                 {
-                    IEnumerable<KeyValuePair<string, object>> items = defaultProvider.GetUrlDefaults();
+                    IEnumerable<KeyValuePair<string, object>> items = defaultProvider.GetDefaults();
                     if (items != null)
                     {
                         foreach (KeyValuePair<string, object> item in items)
                             defaults.Add(item.Key, item.Value);
+                    }
+                }
+
+                IRouteConstraintProvider constraintProvider = attribute as IRouteConstraintProvider;
+                if(constraintProvider != null)
+                {
+                    IEnumerable<KeyValuePair<string, object>> items = constraintProvider.GetConstraints();
+                    if (items != null)
+                    {
+                        foreach (KeyValuePair<string, object> item in items)
+                            constraints.Add(item.Key, item.Value);
                     }
                 }
             }
@@ -63,7 +75,8 @@ namespace Neptuo.AspNet.Navigation.Metadata
             {
                 Name = name,
                 Url = url,
-                Defaults = defaults
+                Defaults = defaults,
+                Constraints = constraints
             };
         }
     }
