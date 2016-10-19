@@ -1,6 +1,10 @@
 # AspNet.Navigation
 Model (class) base navigation and routing for ASP.NET (Core) MVC
 
+## NuGet
+
+* [Current version of NuGet package for (full) ASP.NET](https://www.nuget.org/packages/Neptuo.AspNet.Navigation)
+
 ## Introduction
 
 The ASP.NET routing and link creation is missing type safety. In this library the routing is based on models, a C# define classes for each route. We can quite simply satify default route from MVC with model:
