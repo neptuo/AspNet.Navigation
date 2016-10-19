@@ -2,6 +2,7 @@
 Model (class) base navigation and routing for ASP.NET (Core) MVC
 
 ## NuGet
+This library is distributed on NuGet under APACHE 2.0 licence.
 
 * [Current version of NuGet package for (full) ASP.NET](https://www.nuget.org/packages/Neptuo.AspNet.Navigation)
 
