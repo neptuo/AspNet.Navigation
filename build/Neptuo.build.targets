@@ -1,0 +1,15 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PostBuildEvent>
+
+      mkdir "$(SolutionDir)\artifacts\$(ConfigurationName)"
+      copy "$(TargetDir)$(TargetName).*" "$(SolutionDir)\artifacts\$(ConfigurationName)"
+
+      if exist $(SolutionDir)\.nuget\NuGet.exe (
+        mkdir $(SolutionDir)\artifacts\$(ConfigurationName)\nuget
+        $(SolutionDir)\.nuget\NuGet.exe pack $(ProjectPath) -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir)\artifacts\$(ConfigurationName)\nuget -Symbols
+      )
+
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
