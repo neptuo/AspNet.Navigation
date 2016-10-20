@@ -24,7 +24,7 @@ namespace Neptuo.AspNet.Navigation
         /// <param name="url">The route URL.</param>
         public RouteUrlAttribute(string url)
         {
-            if (String.IsNullOrEmpty(url))
+            if (url == null)
                 throw new ArgumentNullException("url");
 
             Url = url;
