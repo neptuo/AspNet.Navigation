@@ -76,6 +76,8 @@ public class BlogPostRoute : RouteModel
 
 ```
 
+Sample web application (in the src/sample) contains usage of all features, including route constraints.
+
 ## Route registration
 
 The registration process is pretty straightforward, just add the model to the route collection using extension method:
