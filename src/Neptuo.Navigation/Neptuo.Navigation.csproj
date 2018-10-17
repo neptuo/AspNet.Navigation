@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,7 +7,7 @@
     <PackageProjectUrl>https://www.neptuo.com/project/dev/neptuo.navigation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/neptuo/Navigation</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Neptuo Navigatio</PackageTags>
+    <PackageTags>Neptuo Navigation</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0</Version>
   </PropertyGroup>
