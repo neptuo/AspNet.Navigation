@@ -1,3 +1,8 @@
+# Current status (10/2018):
+This is repository is going be rewritten to general navigation framework with WPF and ASP.NET implementations.
+
+-------------------------------------------
+
 # AspNet.Navigation
 Model (class) base navigation and routing for ASP.NET (Core) MVC
 
