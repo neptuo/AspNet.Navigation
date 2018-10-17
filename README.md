@@ -1,5 +1,5 @@
 # Current status (10/2018):
-This is repository is going be rewritten to general navigation framework with WPF and ASP.NET implementations.
+This is repository is going be rewritten to general navigation framework with WPF and ASP.NET implementations - [blueprint](https://gist.github.com/maraf/4f4047a7440ad0709099acc525c1a364).
 
 -------------------------------------------
 
