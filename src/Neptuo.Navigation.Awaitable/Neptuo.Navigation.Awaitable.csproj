@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Neptuo.Navigation</RootNamespace>
     <Authors>Neptuo</Authors>
-    <Description>An extension for navigation service to support URL generation.</Description>
-    <PackageProjectUrl>https://www.neptuo.com/project/dev/neptuo.navigation.url</PackageProjectUrl>
+    <Description>An extension for navigation service to support awaiting view closed and getting a result.</Description>
+    <PackageProjectUrl>https://www.neptuo.com/project/dev/neptuo.navigation.awaitable</PackageProjectUrl>
     <RepositoryUrl>https://github.com/neptuo/Navigation</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Neptuo Navigation</PackageTags>
