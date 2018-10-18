@@ -1,5 +1,4 @@
-﻿using Neptuo;
-using Neptuo.Features;
+﻿using Neptuo.Features;
 using Neptuo.Navigation.Execution;
 using System;
 using System.Collections.Generic;
@@ -10,9 +9,9 @@ using System.Threading.Tasks;
 namespace Neptuo.Navigation
 {
     /// <summary>
-    /// A basic navigation extensions.
+    /// A serial navigation extensions.
     /// </summary>
-    public static class NavigatorExtensions
+    public static class SerialNavigatorExtensions
     {
         /// <summary>
         /// Opens a view associated with the <paramref name="navigation"/> rule.

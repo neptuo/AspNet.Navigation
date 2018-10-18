@@ -5,7 +5,7 @@ using System;
 namespace Neptuo.Navigation
 {
     /// <summary>
-    /// An extensions for URL generation.
+    /// Extensions for URL generation.
     /// </summary>
     public static class UrlNavigatorExtensions
     {
