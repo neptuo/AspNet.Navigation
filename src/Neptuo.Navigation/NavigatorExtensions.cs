@@ -1,4 +1,5 @@
-﻿using Neptuo.Features;
+﻿using Neptuo;
+using Neptuo.Features;
 using Neptuo.Navigation.Execution;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,14 @@ namespace Neptuo.Navigation
     public static class NavigatorExtensions
     {
         /// <summary>
-        /// Opens a view paired to <paramref name="navigation"/> rule.
+        /// Opens a view associated with the <paramref name="navigation"/> rule.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
         /// <param name="navigation">A navigation rule.</param>
         public static void Open(this INavigator navigator, object navigation)
-            => navigator.Features.With<ISerialNavigator>().Open(navigation);
+        {
+            Ensure.NotNull(navigator, "navigator");
+            navigator.Features.With<ISerialNavigator>().Open(navigation);
+        }
     }
 }

@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Neptuo</Authors>
+    <Description>An extension for navigation service to support URL generation.</Description>
+    <PackageProjectUrl>https://www.neptuo.com/project/dev/neptuo.navigation.url</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/neptuo/Navigation</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Neptuo Navigation</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+    <RootNamespace>Neptuo.Navigation</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Neptuo.Features" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Neptuo.Navigation\Neptuo.Navigation.csproj" />
+  </ItemGroup>
+
+</Project>
