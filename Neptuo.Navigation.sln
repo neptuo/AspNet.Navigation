@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neptuo.Navigation", "src\Neptuo.Navigation\Neptuo.Navigation.csproj", "{AA34F273-24F9-4CFF-A8D5-2CBA00E973D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Url", "src\Neptuo.Navigation.Url\Neptuo.Navigation.Url.csproj", "{40084B1A-81B5-4EF9-9C12-8E45C4C4E7F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neptuo.Navigation.Url", "src\Neptuo.Navigation.Url\Neptuo.Navigation.Url.csproj", "{40084B1A-81B5-4EF9-9C12-8E45C4C4E7F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Awaitable", "src\Neptuo.Navigation.Awaitable\Neptuo.Navigation.Awaitable.csproj", "{ADB41BED-5ECB-4680-A047-955EF36E1499}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neptuo.Navigation.Awaitable", "src\Neptuo.Navigation.Awaitable\Neptuo.Navigation.Awaitable.csproj", "{ADB41BED-5ECB-4680-A047-955EF36E1499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Callbacks", "src\Neptuo.Navigation.Callbacks\Neptuo.Navigation.Callbacks.csproj", "{39CE84BF-23AF-4124-872A-8CB960A7FDF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{ADB41BED-5ECB-4680-A047-955EF36E1499}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADB41BED-5ECB-4680-A047-955EF36E1499}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADB41BED-5ECB-4680-A047-955EF36E1499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

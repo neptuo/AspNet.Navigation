@@ -13,17 +13,17 @@ namespace Neptuo.Navigation.Execution
     public interface IAsyncNavigator
     {
         /// <summary>
-        /// Opens view associated with <paramref name="model"/> and returns continuation task that is resolved when the view is closed.
+        /// Opens view associated with <paramref name="navigation"/> and returns continuation task that is resolved when the view is closed.
         /// </summary>
-        /// <param name="model">A navigation rule.</param>
+        /// <param name="navigation">A navigation rule.</param>
         /// <returns>A continuation task that is resolved when the view is closed.</returns>
-        Task OpenAsync(object model);
+        Task OpenAsync(object navigation);
 
         /// <summary>
-        /// Opens view associated with <paramref name="model"/> and returns continuation task that is resolved when the view is closed and provides a result of the view.
+        /// Opens view associated with <paramref name="navigation"/> and returns continuation task that is resolved when the view is closed and provides a result of the view.
         /// </summary>
-        /// <param name="model">A navigation rule.</param>
+        /// <param name="navigation">A navigation rule.</param>
         /// <returns>A continuation task that is resolved when the view is closed and provides a result of the view.</returns>
-        Task<TResult> OpenAsync<TResult>(IAsyncRuleResult<TResult> model);
+        Task<TResult> OpenAsync<TResult>(IAsyncRuleResult<TResult> navigation);
     }
 }
