@@ -15,28 +15,28 @@ namespace Neptuo.Navigation
     public static class CallbackNavigatorExtensions
     {
         /// <summary>
-        /// Opens a view associated view <paramref name="navigation"/> rule.
+        /// Opens a view associated view <paramref name="rule"/> rule.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
-        /// <param name="navigation">A navigation rule.</param>
+        /// <param name="rule">A navigation rule.</param>
         /// <param name="onClosed">A callback invoked after view is closed.</param>
-        public static void Open(this INavigator navigator, object navigation, Action onClosed)
+        public static void Open(this INavigator navigator, object rule, Action onClosed)
         {
             Ensure.NotNull(navigator, "navigator");
-            navigator.Features.With<ICallbackNavigator>().Open(navigation, onClosed);
+            navigator.Features.With<ICallbackNavigator>().Open(rule, onClosed);
         }
 
         /// <summary>
-        /// Opens a view associated view <paramref name="navigation"/> rule.
+        /// Opens a view associated view <paramref name="rule"/> rule.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
-        /// <param name="navigation">A navigation rule.</param>
+        /// <param name="rule">A navigation rule.</param>
         /// <param name="onClosed">A callback invoked after view is closed.</param>
         /// <typeparam name="T">A type of the view result.</typeparam>
-        public static void Open<T>(this INavigator navigator, ICallbackRule<T> navigation, Action<T> onClosed)
+        public static void Open<T>(this INavigator navigator, ICallbackRule<T> rule, Action<T> onClosed)
         {
             Ensure.NotNull(navigator, "navigator");
-            navigator.Features.With<ICallbackNavigator>().Open(navigation, onClosed);
+            navigator.Features.With<ICallbackNavigator>().Open(rule, onClosed);
         }
     }
 }

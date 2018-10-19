@@ -14,14 +14,14 @@ namespace Neptuo.Navigation
     public static class SerialNavigatorExtensions
     {
         /// <summary>
-        /// Opens a view associated with the <paramref name="navigation"/> rule.
+        /// Opens a view associated with the <paramref name="rule"/> rule.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
-        /// <param name="navigation">A navigation rule.</param>
-        public static void Open(this INavigator navigator, object navigation)
+        /// <param name="rule">A navigation rule.</param>
+        public static void Open(this INavigator navigator, object rule)
         {
             Ensure.NotNull(navigator, "navigator");
-            navigator.Features.With<ISerialNavigator>().Open(navigation);
+            navigator.Features.With<ISerialNavigator>().Open(rule);
         }
     }
 }

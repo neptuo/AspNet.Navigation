@@ -12,10 +12,10 @@ namespace Neptuo.Navigation.Execution
     public interface IUrlNavigator
     {
         /// <summary>
-        /// Gets an url associated with the <paramref name="navigation"/> rule.
+        /// Gets an url associated with the <paramref name="rule"/> rule.
         /// </summary>
-        /// <param name="navigation">A navigation rule.</param>
-        /// <returns>An url associated with <paramref name="navigation"/> rule.</returns>
-        string Url(object navigation);
+        /// <param name="rule">A navigation rule.</param>
+        /// <returns>An url associated with <paramref name="rule"/> rule.</returns>
+        string Url(object rule);
     }
 }

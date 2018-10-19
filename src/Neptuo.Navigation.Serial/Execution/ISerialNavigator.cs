@@ -12,9 +12,9 @@ namespace Neptuo.Navigation.Execution
     public interface ISerialNavigator
     {
         /// <summary>
-        /// Opens a view paired to <paramref name="navigation"/> rule.
+        /// Opens a view associated with the <paramref name="rule"/> rule.
         /// </summary>
-        /// <param name="navigation">A navigation rule.</param>
-        void Open(object navigation);
+        /// <param name="rule">A navigation rule.</param>
+        void Open(object rule);
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Neptuo.Navigation.Rules
 {
     /// <summary>
-    /// A marker interface for defining navigation rule result type.
+    /// A marker interface for defining a navigation rule result type.
     /// </summary>
     /// <typeparam name="T">A type of the result.</typeparam>
-    public interface IAsyncRuleResult<T>
+    public interface IAsyncRule<T>
     { }
 }

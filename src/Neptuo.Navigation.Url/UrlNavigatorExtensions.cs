@@ -10,15 +10,15 @@ namespace Neptuo.Navigation
     public static class UrlNavigatorExtensions
     {
         /// <summary>
-        /// Gets an url associated with the <paramref name="navigation"/> rule.
+        /// Gets an url associated with the <paramref name="rule"/> rule.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
-        /// <param name="navigation">A navigation rule.</param>
-        /// <returns>An url associated with <paramref name="navigation"/> rule.</returns>
-        public static string Url(this INavigator navigator, object navigation)
+        /// <param name="rule">A navigation rule.</param>
+        /// <returns>An url associated with <paramref name="rule"/> rule.</returns>
+        public static string Url(this INavigator navigator, object rule)
         {
             Ensure.NotNull(navigator, "navigator");
-            return navigator.Features.With<IUrlNavigator>().Url(navigation);
+            return navigator.Features.With<IUrlNavigator>().Url(rule);
         }
     }
 }

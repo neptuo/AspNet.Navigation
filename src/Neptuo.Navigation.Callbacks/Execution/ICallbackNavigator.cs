@@ -13,18 +13,18 @@ namespace Neptuo.Navigation.Execution
     public interface ICallbackNavigator
     {
         /// <summary>
-        /// Opens a view associated view <paramref name="navigation"/> rule.
+        /// Opens a view associated view <paramref name="rule"/> rule.
         /// </summary>
-        /// <param name="navigation">A navigation rule.</param>
+        /// <param name="rule">A navigation rule.</param>
         /// <param name="onClosed">A callback invoked after view is closed.</param>
-        void Open(object navigation, Action onClosed);
+        void Open(object rule, Action onClosed);
         
         /// <summary>
-        /// Opens a view associated view <paramref name="navigation"/> rule.
+        /// Opens a view associated view <paramref name="rule"/> rule.
         /// </summary>
-        /// <param name="navigation">A navigation rule.</param>
+        /// <param name="rule">A navigation rule.</param>
         /// <param name="onClosed">A callback invoked after view is closed.</param>
         /// <typeparam name="T">A type of the view result.</typeparam>
-        void Open<T>(ICallbackRule<T> navigation, Action<T> onClosed);
+        void Open<T>(ICallbackRule<T> rule, Action<T> onClosed);
     }
 }

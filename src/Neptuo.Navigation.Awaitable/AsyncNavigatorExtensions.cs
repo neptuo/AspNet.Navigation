@@ -15,27 +15,27 @@ namespace Neptuo.Navigation
     public static class AsyncNavigatorExtensions
     {
         /// <summary>
-        /// Opens view associated with <paramref name="model"/> and returns continuation task that is resolved when the view is closed.
+        /// Opens view associated with <paramref name="rule"/> and returns continuation task that is resolved when the view is closed.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
-        /// <param name="model">A navigation rule.</param>
+        /// <param name="rule">A navigation rule.</param>
         /// <returns>A continuation task that is resolved when the view is closed.</returns>
-        public static Task OpenAsync(this INavigator navigator, object model)
+        public static Task OpenAsync(this INavigator navigator, object rule)
         {
             Ensure.NotNull(navigator, "navigator");
-            return navigator.Features.With<IAsyncNavigator>().OpenAsync(model);
+            return navigator.Features.With<IAsyncNavigator>().OpenAsync(rule);
         }
 
         /// <summary>
-        /// Opens view associated with <paramref name="model"/> and returns continuation task that is resolved when the view is closed and provides a result of the view.
+        /// Opens view associated with <paramref name="rule"/> and returns continuation task that is resolved when the view is closed and provides a result of the view.
         /// </summary>
         /// <param name="navigator">A navigator.</param>
-        /// <param name="model">A navigation rule.</param>
+        /// <param name="rule">A navigation rule.</param>
         /// <returns>A continuation task that is resolved when the view is closed and provides a result of the view.</returns>
-        public static Task<TResult> OpenAsync<TResult>(this INavigator navigator, IAsyncRuleResult<TResult> model)
+        public static Task<TResult> OpenAsync<TResult>(this INavigator navigator, IAsyncRule<TResult> rule)
         {
             Ensure.NotNull(navigator, "navigator");
-            return navigator.Features.With<IAsyncNavigator>().OpenAsync(model);
+            return navigator.Features.With<IAsyncNavigator>().OpenAsync(rule);
         }
     }
 }
