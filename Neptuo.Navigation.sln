@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neptuo.Navigation.Awaitable
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Callbacks", "src\Neptuo.Navigation.Callbacks\Neptuo.Navigation.Callbacks.csproj", "{39CE84BF-23AF-4124-872A-8CB960A7FDF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Serial", "src\Neptuo.Navigation.Serial\Neptuo.Navigation.Serial.csproj", "{97409B76-05CA-4625-8173-F09E091D2D5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39CE84BF-23AF-4124-872A-8CB960A7FDF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97409B76-05CA-4625-8173-F09E091D2D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97409B76-05CA-4625-8173-F09E091D2D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97409B76-05CA-4625-8173-F09E091D2D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97409B76-05CA-4625-8173-F09E091D2D5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
