@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <RootNamespace>Neptuo.Navigation</RootNamespace>
+    <Authors>Neptuo</Authors>
+    <Description>An implementation of navigation service for WPF.</Description>
+    <PackageProjectUrl>https://www.neptuo.com/project/dev/neptuo.navigation.wpf</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/neptuo/Navigation</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Neptuo Navigation</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Neptuo.Features" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Neptuo.Navigation\Neptuo.Navigation.csproj" />
+    <ProjectReference Include="..\Neptuo.Navigation.Awaitable\Neptuo.Navigation.Awaitable.csproj" />
+    <ProjectReference Include="..\Neptuo.Navigation.Callbacks\Neptuo.Navigation.Callbacks.csproj" />
+    <ProjectReference Include="..\Neptuo.Navigation.Serial\Neptuo.Navigation.Serial.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+</Project>

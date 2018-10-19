@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05596F87
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestsApp", "TestsApp", "{8B1D1686-ED87-45FF-9CDD-719290238D21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Wpf", "src\Neptuo.Navigation.Wpf\Neptuo.Navigation.Wpf.csproj", "{C3209730-BA73-42BA-A7FC-9CA60795F359}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{97409B76-05CA-4625-8173-F09E091D2D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97409B76-05CA-4625-8173-F09E091D2D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97409B76-05CA-4625-8173-F09E091D2D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3209730-BA73-42BA-A7FC-9CA60795F359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3209730-BA73-42BA-A7FC-9CA60795F359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3209730-BA73-42BA-A7FC-9CA60795F359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3209730-BA73-42BA-A7FC-9CA60795F359}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{ADB41BED-5ECB-4680-A047-955EF36E1499} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
 		{39CE84BF-23AF-4124-872A-8CB960A7FDF5} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
 		{97409B76-05CA-4625-8173-F09E091D2D5F} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
+		{C3209730-BA73-42BA-A7FC-9CA60795F359} = {AA518D9C-2A40-49C4-B5CA-F711205E3716}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBDA02A8-B7B1-47BE-81E5-E0EC5C7F92D1}
