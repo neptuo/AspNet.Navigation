@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Callbacks
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Serial", "src\Neptuo.Navigation.Serial\Neptuo.Navigation.Serial.csproj", "{97409B76-05CA-4625-8173-F09E091D2D5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{ECDBC0D2-D8A7-4290-A674-3B10465D6E78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{AA518D9C-2A40-49C4-B5CA-F711205E3716}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05596F87-19C9-4A5A-82C7-91F1913C875A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestsApp", "TestsApp", "{8B1D1686-ED87-45FF-9CDD-719290238D21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +50,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA34F273-24F9-4CFF-A8D5-2CBA00E973D9} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
+		{40084B1A-81B5-4EF9-9C12-8E45C4C4E7F7} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
+		{ADB41BED-5ECB-4680-A047-955EF36E1499} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
+		{39CE84BF-23AF-4124-872A-8CB960A7FDF5} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
+		{97409B76-05CA-4625-8173-F09E091D2D5F} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBDA02A8-B7B1-47BE-81E5-E0EC5C7F92D1}
