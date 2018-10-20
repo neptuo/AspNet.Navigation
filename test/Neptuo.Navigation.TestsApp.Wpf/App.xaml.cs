@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neptuo.Navigation.TestsApp.Wpf.Services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,5 +11,13 @@ namespace Neptuo.Navigation.TestsApp.Wpf
 {
     public partial class App : Application
     {
+        public ProductRepository ProductRepository { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            ProductRepository = new ProductRepository();
+        }
     }
 }
