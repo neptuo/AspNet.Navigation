@@ -22,7 +22,7 @@ namespace Neptuo.Navigation.TestsApp.Wpf.Services
             return null;
         }
 
-        public ProductBuilder Add()
+        public ProductBuilder Create()
             => new ProductBuilder(storage);
 
         public ProductBuilder Update(Guid id)

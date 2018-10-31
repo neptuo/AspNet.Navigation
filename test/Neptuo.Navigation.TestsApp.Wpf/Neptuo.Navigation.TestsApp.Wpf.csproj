@@ -57,6 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\ProductListViewModel.cs" />
+    <Compile Include="ViewModels\Rules\Other.cs" />
+    <Compile Include="Views\OtherWindow.xaml.cs">
+      <DependentUpon>OtherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductListWindow.xaml.cs">
+      <DependentUpon>ProductListWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +75,8 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Services\ProductBuilder.cs" />
+    <Compile Include="ViewModels\Commands\NavigateCommand.cs" />
+    <Compile Include="ViewModels\Rules\Main.cs" />
     <Compile Include="ViewModels\Rules\ProductList.cs" />
     <Compile Include="Services\ProductRepository.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -74,6 +84,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\OtherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

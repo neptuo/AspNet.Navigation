@@ -12,14 +12,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Neptuo.Navigation.TestsApp.Wpf
+namespace Neptuo.Navigation.TestsApp.Wpf.Views
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for ProductListWindow.xaml
+    /// </summary>
+    public partial class ProductListWindow : Window
     {
-        public MainWindow(MainViewModel viewModel)
+        public ProductListWindow(ProductListViewModel viewModel)
         {
             Ensure.NotNull(viewModel, "viewModel");
 

@@ -1,6 +1,4 @@
-﻿using Neptuo;
-using Neptuo.Navigation.TestsApp.Wpf.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Neptuo.Navigation.TestsApp.Wpf
+namespace Neptuo.Navigation.TestsApp.Wpf.Views
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for OtherWindow.xaml
+    /// </summary>
+    public partial class OtherWindow : Window
     {
-        public MainWindow(MainViewModel viewModel)
+        public OtherWindow()
         {
-            Ensure.NotNull(viewModel, "viewModel");
-
             InitializeComponent();
-
-            DataContext = viewModel;
         }
     }
 }

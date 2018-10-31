@@ -3,10 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Neptuo.Navigation.TestsApp.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="ButtonContainerStyle" TargetType="StackPanel">
+            <Setter Property="Margin" Value="8,8,8,0" />
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="8,8,8,0" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Style="{StaticResource ButtonContainerStyle}">
+            <Button Content="Open main" Command="{Binding OpenMain}" />
+            <Button Content="Open other" Command="{Binding OpenOther}" />
+        </StackPanel>
+        <StackPanel Style="{StaticResource ButtonContainerStyle}">
+            <Button Content="Select product" Command="{Binding SelectProduct}" />
+        </StackPanel>
+        <ListView ItemsSource="{Binding SelectedProducts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
 </Window>
