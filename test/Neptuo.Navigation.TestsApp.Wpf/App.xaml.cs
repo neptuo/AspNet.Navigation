@@ -1,4 +1,5 @@
-﻿using Neptuo.Features;
+﻿using Neptuo;
+using Neptuo.Features;
 using Neptuo.Navigation.Execution;
 using Neptuo.Navigation.Rules;
 using Neptuo.Navigation.TestsApp.Wpf.Services;
@@ -47,15 +48,28 @@ namespace Neptuo.Navigation.TestsApp.Wpf
     class AsyncNavigator : IAsyncNavigator
     {
         private readonly App app;
-
-        private ViewContext<bool> main;
-        private ViewContext<bool> other;
-        private ViewContext<List<Guid>> productList;
+        private readonly List<ViewRule> factories = new List<ViewRule>();
+        private readonly List<ViewContext> views = new List<ViewContext>();
 
         public AsyncNavigator(App app)
         {
             Ensure.NotNull(app, "app");
             this.app = app;
+
+            Add<Main>(rule => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
+            Add<Other>(rule => new OtherWindow());
+            Add<ProductList, List<Guid>>((rule, context) => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context));
+        }
+
+        public void Add<TRule, TResult>(Func<TRule, IViewContext<TResult>, Window> factory)
+            where TRule : IAsyncRule<TResult>
+        {
+
+        }
+
+        public void Add<TRule>(Func<TRule, Window> factory)
+        {
+            factories.Add(new ViewRule<TRule>(factory));
         }
 
         public Task OpenAsync(object rule)
@@ -63,16 +77,16 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             Ensure.NotNull(rule, "rule");
 
             if (rule is Main)
-                return OpenRule(ref main, context => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
+                return OpenRule(context => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
             else if (rule is Other)
-                return OpenRule(ref other, context => new OtherWindow());
+                return OpenRule(context => new OtherWindow());
             else if (rule is ProductList)
-                return OpenRule(ref productList, context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
+                return OpenRule(context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
 
             throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
         }
 
-        private Task<T> OpenRule<T>(ref ViewContext<T> context, Func<IViewContext<T>, Window> windowFactory, bool isModal = false)
+        private Task<T> OpenRule<T>(Func<IViewContext<T>, Window> windowFactory, bool isModal = false)
         {
             if (context == null)
             {
@@ -133,11 +147,39 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
         }
 
-        class ViewContext<T> : IViewContext<T>
+        abstract class ViewRule
+        {
+            public abstract Window Open(object rule);
+        }
+
+        class ViewRule<TRule> : ViewRule
+        {
+            private readonly Func<TRule, Window> factory;
+
+            public ViewRule(Func<TRule, Window> factory)
+            {
+                Ensure.NotNull(factory, "factory");
+                this.factory = factory;
+            }
+
+            public override Window Open(object rule)
+                => OpenOverride((TRule)rule);
+
+            protected Window OpenOverride(TRule rule)
+                => factory(rule);
+        }
+
+        abstract class ViewContext
         {
             public Window Window { get; set; }
-            public TaskCompletionSource<T> TaskSource { get; }
             public bool IsModal { get; set; }
+
+            public abstract void OnClose();
+        }
+
+        class ViewContext<T> : ViewContext, IViewContext<T>
+        {
+            public TaskCompletionSource<T> TaskSource { get; }
             public T Result { get; set; }
 
             public ViewContext()
@@ -145,7 +187,7 @@ namespace Neptuo.Navigation.TestsApp.Wpf
                 TaskSource = new TaskCompletionSource<T>();
             }
 
-            public void OnClose()
+            public override void OnClose()
             {
                 TaskSource.TrySetResult(Result);
             }
