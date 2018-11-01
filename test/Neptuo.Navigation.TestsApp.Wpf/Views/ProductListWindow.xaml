@@ -3,9 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        xmlns:dd="clr-namespace:Neptuo.Navigation.TestsApp.Wpf.Views.DesignData"
+        mc:Ignorable="d" d:DataContext="{x:Static dd:ViewModelLocator.ProductListViewModel}"
         Title="ProductListWindow" Height="450" Width="600" WindowStartupLocation="CenterOwner">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView x:Name="lvwItems" ItemsSource="{Binding Items}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Unit price" DisplayMemberBinding="{Binding UnitPrice}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Margin="0,0,0,8" Grid.Row="1">
+            <StackPanel Style="{StaticResource ButtonContainerStyle}" HorizontalAlignment="Right">
+                <Button x:Name="btnSelect" Content="Select" Click="btnSelect_Click" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource ButtonContainerStyle}">
+                <Button Content="Create" IsEnabled="False" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

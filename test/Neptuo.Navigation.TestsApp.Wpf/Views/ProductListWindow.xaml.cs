@@ -1,4 +1,5 @@
 ﻿using Neptuo;
+using Neptuo.Navigation.TestsApp.Wpf.Models;
 using Neptuo.Navigation.TestsApp.Wpf.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,22 @@ namespace Neptuo.Navigation.TestsApp.Wpf.Views
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        public ProductListWindow(ProductListViewModel viewModel)
+        private readonly IViewContext<List<Guid>> viewContext;
+
+        public ProductListWindow(ProductListViewModel viewModel, IViewContext<List<Guid>> viewContext)
         {
             Ensure.NotNull(viewModel, "viewModel");
+            this.viewContext = viewContext;
 
             InitializeComponent();
 
             DataContext = viewModel;
+        }
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            var selectIds = lvwItems.SelectedItems.OfType<Product>().Select(p => p.Id).ToList();
+            viewContext.Close(selectIds);
         }
     }
 }

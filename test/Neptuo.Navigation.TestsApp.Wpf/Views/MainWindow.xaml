@@ -5,19 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style x:Key="ButtonContainerStyle" TargetType="StackPanel">
-            <Setter Property="Margin" Value="8,8,8,0" />
-            <Setter Property="Orientation" Value="Horizontal" />
-        </Style>
-        <Style TargetType="ListView">
-            <Setter Property="Margin" Value="8,8,8,0" />
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Padding" Value="8,4" />
-            <Setter Property="Margin" Value="0,0,8,0" />
-        </Style>
-    </Window.Resources>
     <StackPanel>
         <StackPanel Style="{StaticResource ButtonContainerStyle}">
             <Button Content="Open main" Command="{Binding OpenMain}" />

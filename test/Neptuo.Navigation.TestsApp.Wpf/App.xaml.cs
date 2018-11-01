@@ -1,11 +1,11 @@
-﻿using Neptuo;
-using Neptuo.Features;
+﻿using Neptuo.Features;
 using Neptuo.Navigation.Execution;
 using Neptuo.Navigation.Rules;
 using Neptuo.Navigation.TestsApp.Wpf.Services;
 using Neptuo.Navigation.TestsApp.Wpf.ViewModels;
 using Neptuo.Navigation.TestsApp.Wpf.ViewModels.Rules;
 using Neptuo.Navigation.TestsApp.Wpf.Views;
+using Neptuo.Navigation.TestsApp.Wpf.Views.DesignData;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,7 +25,7 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             base.OnStartup(e);
 
-            ProductRepository = new ProductRepository();
+            ProductRepository = ViewModelLocator.ProductRepository;
             ProductRepository.Create().Name("Hotel A").UnitPrice(200).Save();
 
             Navigator = new Navigator(new FeatureObject(new AsyncNavigator(this)));
@@ -63,25 +63,27 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             Ensure.NotNull(rule, "rule");
 
             if (rule is Main)
-                return OpenRule(ref main, () => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
+                return OpenRule(ref main, context => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
             else if (rule is Other)
-                return OpenRule(ref other, () => new OtherWindow());
+                return OpenRule(ref other, context => new OtherWindow());
             else if (rule is ProductList)
-                return OpenRule(ref productList, () => new ProductListWindow(new ProductListViewModel(app.ProductRepository)), true);
+                return OpenRule(ref productList, context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
 
             throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
         }
 
-        private Task<T> OpenRule<T>(ref ViewContext<T> context, Func<Window> windowFactory, bool isModal = false)
+        private Task<T> OpenRule<T>(ref ViewContext<T> context, Func<IViewContext<T>, Window> windowFactory, bool isModal = false)
         {
             if (context == null)
             {
-                var window = windowFactory();
+                context = new ViewContext<T>();
+
+                var window = windowFactory(context);
 
                 window.Closed += OnClosed;
                 window.Show();
 
-                context = new ViewContext<T>(window);
+                context.Window = window;
 
                 if (isModal)
                 {
@@ -102,10 +104,10 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             Window wnd = (Window)sender;
 
-            void Clear<T>(ref ViewContext<T> context, T result = default(T))
+            void Clear<T>(ref ViewContext<T> context)
             {
                 context.Window.Closed -= OnClosed;
-                context.OnClose(result);
+                context.OnClose();
                 if (context.IsModal)
                 {
                     if (main != null)
@@ -120,33 +122,44 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             else if (other != null && wnd == other.Window)
                 Clear(ref other);
             else if (productList != null && wnd == productList.Window)
-                Clear(ref productList, new List<Guid>() { app.ProductRepository.GetList().First().Id });
+                Clear(ref productList);
         }
 
         public Task<TResult> OpenAsync<TResult>(IAsyncRule<TResult> rule)
         {
             if (rule is ProductList)
-                return (Task<TResult>)(object)OpenRule(ref productList, () => new ProductListWindow(new ProductListViewModel(app.ProductRepository)), true);
+                return (Task<TResult>)(object)OpenRule(ref productList, context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
 
             throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
         }
 
-        class ViewContext<T>
+        class ViewContext<T> : IViewContext<T>
         {
-            public Window Window { get; }
+            public Window Window { get; set; }
             public TaskCompletionSource<T> TaskSource { get; }
             public bool IsModal { get; set; }
+            public T Result { get; set; }
 
-            public ViewContext(Window window)
+            public ViewContext()
             {
-                Window = window;
                 TaskSource = new TaskCompletionSource<T>();
             }
 
-            public void OnClose(T result)
+            public void OnClose()
             {
-                TaskSource.TrySetResult(result);
+                TaskSource.TrySetResult(Result);
+            }
+
+            public void Close(T result)
+            {
+                Result = result;
+                Window.Close();
             }
         }
+    }
+
+    public interface IViewContext<T>
+    {
+        void Close(T result);
     }
 }

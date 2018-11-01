@@ -45,11 +45,14 @@ namespace Neptuo.Navigation.TestsApp.Wpf.ViewModels
             SelectedProducts.Clear();
 
             List<Guid> productIds = await navigator.OpenAsync(new ProductList());
-            foreach (Guid productId in productIds)
+            if (productIds != null)
             {
-                Product product = productRepository.Find(productId);
-                if (product != null)
-                    SelectedProducts.Add(product);
+                foreach (Guid productId in productIds)
+                {
+                    Product product = productRepository.Find(productId);
+                    if (product != null)
+                        SelectedProducts.Add(product);
+                }
             }
         }
     }

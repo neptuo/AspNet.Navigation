@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\ProductListViewModel.cs" />
     <Compile Include="ViewModels\Rules\Other.cs" />
+    <Compile Include="Views\DesignData\ViewModelLocator.cs" />
     <Compile Include="Views\OtherWindow.xaml.cs">
       <DependentUpon>OtherWindow.xaml</DependentUpon>
     </Compile>
