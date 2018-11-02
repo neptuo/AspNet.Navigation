@@ -1,6 +1,6 @@
-﻿using Neptuo;
-using Neptuo.Navigation.TestsApp.Wpf.Models;
+﻿using Neptuo.Navigation.TestsApp.Wpf.Models;
 using Neptuo.Navigation.TestsApp.Wpf.ViewModels;
+using Neptuo.Navigation.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
