@@ -154,8 +154,8 @@ namespace Neptuo.Navigation.TestsApp.Wpf
                 //        main.Window.IsEnabled = true;
                 //}
 
-                context = null;
                 views.Remove(context);
+                context = null;
             }
 
             ViewContext target = null;
