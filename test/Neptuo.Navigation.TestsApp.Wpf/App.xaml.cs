@@ -29,8 +29,17 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             ProductRepository = ViewModelLocator.ProductRepository;
             ProductRepository.Create().Name("Hotel A").UnitPrice(200).Save();
 
-            Navigator = new Navigator(new FeatureObject(new AsyncNavigator(this)));
+            Navigator = new Navigator(new FeatureObject(RegisterViews(new AsyncNavigator(this))));
+
             Navigator.OpenAsync(new Main());
+        }
+
+        private AsyncNavigator RegisterViews(AsyncNavigator navigator)
+        {
+            navigator.Add<Main>(rule => new MainWindow(new MainViewModel(Navigator, ProductRepository)));
+            navigator.Add<Other>(rule => new OtherWindow());
+            navigator.Add<ProductList, List<Guid>>((rule, context) => new ProductListWindow(new ProductListViewModel(ProductRepository), context));
+            return navigator;
         }
     }
 
@@ -55,16 +64,12 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             Ensure.NotNull(app, "app");
             this.app = app;
-
-            Add<Main>(rule => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
-            Add<Other>(rule => new OtherWindow());
-            Add<ProductList, List<Guid>>((rule, context) => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context));
         }
 
         public void Add<TRule, TResult>(Func<TRule, IViewContext<TResult>, Window> factory)
             where TRule : IAsyncRule<TResult>
         {
-
+            factories.Add(new ViewRule<TRule, TResult>(factory));
         }
 
         public void Add<TRule>(Func<TRule, Window> factory)
@@ -76,40 +81,53 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             Ensure.NotNull(rule, "rule");
 
-            if (rule is Main)
-                return OpenRule(context => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
-            else if (rule is Other)
-                return OpenRule(context => new OtherWindow());
-            else if (rule is ProductList)
-                return OpenRule(context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
+            Type ruleType = rule.GetType();
+            foreach (ViewRule registration in factories)
+            {
+                if (registration.RuleType.IsAssignableFrom(ruleType))
+                    return OpenRule<bool>(rule, registration);
+            }
+
+            //if (rule is Main)
+            //    return OpenRule(context => new MainWindow(new MainViewModel(app.Navigator, app.ProductRepository)));
+            //else if (rule is Other)
+            //    return OpenRule(context => new OtherWindow());
+            //else if (rule is ProductList)
+            //    return OpenRule(context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
 
             throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
         }
 
-        private Task<T> OpenRule<T>(Func<IViewContext<T>, Window> windowFactory, bool isModal = false)
+        public Task<TResult> OpenAsync<TResult>(IAsyncRule<TResult> rule)
         {
-            if (context == null)
+            Ensure.NotNull(rule, "rule");
+
+            Type ruleType = rule.GetType();
+            foreach (ViewRule registration in factories)
             {
-                context = new ViewContext<T>();
-
-                var window = windowFactory(context);
-
-                window.Closed += OnClosed;
-                window.Show();
-
-                context.Window = window;
-
-                if (isModal)
-                {
-                    context.IsModal = true;
-                    if (main != null)
-                        main.Window.IsEnabled = false;
-                }
+                if (registration.RuleType.IsAssignableFrom(ruleType))
+                    return OpenRule<TResult>(rule, registration);
             }
-            else
-            {
-                context.Window.Activate();
-            }
+
+            //if (rule is ProductList)
+            //    return (Task<TResult>)(object)OpenRule(ref productList, context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
+
+            throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
+        }
+
+        private Task<T> OpenRule<T>(object rule, ViewRule registration)
+        {
+            var context = new ViewContext<T>();
+            views.Add(context);
+
+            var window = registration.Open(rule, context);
+            context.Window = window;
+
+            window.Closed += OnClosed;
+            window.Show();
+
+            // TODO: Window modality.
+            //context.Window.Activate();
 
             return context.TaskSource.Task;
         }
@@ -118,38 +136,41 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             Window wnd = (Window)sender;
 
-            void Clear<T>(ref ViewContext<T> context)
+            void Clear(ViewContext context)
             {
                 context.Window.Closed -= OnClosed;
                 context.OnClose();
-                if (context.IsModal)
-                {
-                    if (main != null)
-                        main.Window.IsEnabled = true;
-                }
+
+                // TODO: Modality.
+                //if (context.IsModal)
+                //{
+                //    if (main != null)
+                //        main.Window.IsEnabled = true;
+                //}
 
                 context = null;
+                views.Remove(context);
             }
 
-            if (main != null && wnd == main.Window)
-                Clear(ref main);
-            else if (other != null && wnd == other.Window)
-                Clear(ref other);
-            else if (productList != null && wnd == productList.Window)
-                Clear(ref productList);
-        }
+            ViewContext target = null;
+            foreach (ViewContext view in views)
+            {
+                if (view.Window == wnd)
+                {
+                    target = view;
+                    break;
+                }
+            }
 
-        public Task<TResult> OpenAsync<TResult>(IAsyncRule<TResult> rule)
-        {
-            if (rule is ProductList)
-                return (Task<TResult>)(object)OpenRule(ref productList, context => new ProductListWindow(new ProductListViewModel(app.ProductRepository), context), true);
-
-            throw Ensure.Exception.InvalidOperation($"Missing handler for rule '{rule.GetType().Name}'.");
+            if (target != null)
+                Clear(target);
         }
 
         abstract class ViewRule
         {
-            public abstract Window Open(object rule);
+            public Type RuleType { get; protected set; }
+
+            public abstract Window Open(object rule, ViewContext viewContext);
         }
 
         class ViewRule<TRule> : ViewRule
@@ -160,13 +181,35 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             {
                 Ensure.NotNull(factory, "factory");
                 this.factory = factory;
+
+                RuleType = typeof(TRule);
             }
 
-            public override Window Open(object rule)
+            public override Window Open(object rule, ViewContext viewContext)
                 => OpenOverride((TRule)rule);
 
             protected Window OpenOverride(TRule rule)
                 => factory(rule);
+        }
+
+        class ViewRule<TRule, TResult> : ViewRule
+            where TRule : IAsyncRule<TResult>
+        {
+            private readonly Func<TRule, IViewContext<TResult>, Window> factory;
+
+            public ViewRule(Func<TRule, IViewContext<TResult>, Window> factory)
+            {
+                Ensure.NotNull(factory, "factory");
+                this.factory = factory;
+
+                RuleType = typeof(TRule);
+            }
+
+            public override Window Open(object rule, ViewContext viewContext)
+                => OpenOverride((TRule)rule, (IViewContext<TResult>)viewContext);
+
+            protected Window OpenOverride(TRule rule, IViewContext<TResult> viewContext)
+                => factory(rule, viewContext);
         }
 
         abstract class ViewContext
