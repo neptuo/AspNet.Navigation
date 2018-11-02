@@ -38,7 +38,7 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             navigator.Add<Main>(rule => new MainWindow(new MainViewModel(Navigator, ProductRepository)));
             navigator.Add<Other>(rule => new OtherWindow());
-            navigator.Add<ProductList, List<Guid>>((rule, context) => new ProductListWindow(new ProductListViewModel(ProductRepository), context));
+            navigator.Add<ProductList, List<Guid>>((rule, context) => new ProductListWindow(new ProductListViewModel(ProductRepository), context), true);
             return navigator;
         }
     }
@@ -66,15 +66,15 @@ namespace Neptuo.Navigation.TestsApp.Wpf
             this.app = app;
         }
 
-        public void Add<TRule, TResult>(Func<TRule, IViewContext<TResult>, Window> factory)
+        public void Add<TRule, TResult>(Func<TRule, IViewContext<TResult>, Window> factory, bool isModal = false)
             where TRule : IAsyncRule<TResult>
         {
-            factories.Add(new ViewRule<TRule, TResult>(factory));
+            factories.Add(new ViewRule<TRule, TResult>(factory, isModal));
         }
 
-        public void Add<TRule>(Func<TRule, Window> factory)
+        public void Add<TRule>(Func<TRule, Window> factory, bool isModal = false)
         {
-            factories.Add(new ViewRule<TRule>(factory));
+            factories.Add(new ViewRule<TRule>(factory, isModal));
         }
 
         public Task OpenAsync(object rule)
@@ -117,17 +117,23 @@ namespace Neptuo.Navigation.TestsApp.Wpf
 
         private Task<T> OpenRule<T>(object rule, ViewRule registration)
         {
-            var context = new ViewContext<T>();
-            views.Add(context);
+            var context = views.OfType<ViewContext<T>>().FirstOrDefault(v => v.Registration == registration);
+            if (!registration.IsModal || context == null)
+            {
+                context = new ViewContext<T>();
+                context.Registration = registration;
+                views.Add(context);
 
-            var window = registration.Open(rule, context);
-            context.Window = window;
+                var window = registration.Open(rule, context);
+                context.Window = window;
 
-            window.Closed += OnClosed;
-            window.Show();
-
-            // TODO: Window modality.
-            //context.Window.Activate();
+                window.Closed += OnClosed;
+                window.Show();
+            }
+            else
+            {
+                context.Window.Activate();
+            }
 
             return context.TaskSource.Task;
         }
@@ -169,6 +175,7 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         abstract class ViewRule
         {
             public Type RuleType { get; protected set; }
+            public bool IsModal { get; protected set; }
 
             public abstract Window Open(object rule, ViewContext viewContext);
         }
@@ -177,12 +184,13 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             private readonly Func<TRule, Window> factory;
 
-            public ViewRule(Func<TRule, Window> factory)
+            public ViewRule(Func<TRule, Window> factory, bool isModal)
             {
                 Ensure.NotNull(factory, "factory");
                 this.factory = factory;
 
                 RuleType = typeof(TRule);
+                IsModal = isModal;
             }
 
             public override Window Open(object rule, ViewContext viewContext)
@@ -197,12 +205,13 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         {
             private readonly Func<TRule, IViewContext<TResult>, Window> factory;
 
-            public ViewRule(Func<TRule, IViewContext<TResult>, Window> factory)
+            public ViewRule(Func<TRule, IViewContext<TResult>, Window> factory, bool isModal)
             {
                 Ensure.NotNull(factory, "factory");
                 this.factory = factory;
 
                 RuleType = typeof(TRule);
+                IsModal = isModal;
             }
 
             public override Window Open(object rule, ViewContext viewContext)
@@ -215,6 +224,7 @@ namespace Neptuo.Navigation.TestsApp.Wpf
         abstract class ViewContext
         {
             public Window Window { get; set; }
+            public ViewRule Registration { get; set; }
             public bool IsModal { get; set; }
 
             public abstract void OnClose();
