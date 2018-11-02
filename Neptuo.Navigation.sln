@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Neptuo.Navigation.Notificat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.TestsApp.Wpf", "test\Neptuo.Navigation.TestsApp.Wpf\Neptuo.Navigation.TestsApp.Wpf.csproj", "{0DDA0EAC-026F-487F-AC9A-111F2FDC0ACD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neptuo.Navigation.Notifications.Awaitable", "src\Neptuo.Navigation.Notifications.Awaitable\Neptuo.Navigation.Notifications.Awaitable.csproj", "{1157A776-183D-4277-81ED-CEBB8F43EF3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{0DDA0EAC-026F-487F-AC9A-111F2FDC0ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DDA0EAC-026F-487F-AC9A-111F2FDC0ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DDA0EAC-026F-487F-AC9A-111F2FDC0ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1157A776-183D-4277-81ED-CEBB8F43EF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1157A776-183D-4277-81ED-CEBB8F43EF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1157A776-183D-4277-81ED-CEBB8F43EF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1157A776-183D-4277-81ED-CEBB8F43EF3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{C3209730-BA73-42BA-A7FC-9CA60795F359} = {AA518D9C-2A40-49C4-B5CA-F711205E3716}
 		{0AEA7014-EE6D-4BB5-9EAA-83658FF3E0A3} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
 		{0DDA0EAC-026F-487F-AC9A-111F2FDC0ACD} = {8B1D1686-ED87-45FF-9CDD-719290238D21}
+		{1157A776-183D-4277-81ED-CEBB8F43EF3C} = {ECDBC0D2-D8A7-4290-A674-3B10465D6E78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBDA02A8-B7B1-47BE-81E5-E0EC5C7F92D1}
