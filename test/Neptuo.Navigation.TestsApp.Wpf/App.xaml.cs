@@ -1,5 +1,7 @@
-﻿using Neptuo.Features;
+﻿using Neptuo.Activators;
+using Neptuo.Features;
 using Neptuo.Navigation.Execution;
+using Neptuo.Navigation.Registration;
 using Neptuo.Navigation.TestsApp.Wpf.Services;
 using Neptuo.Navigation.TestsApp.Wpf.ViewModels;
 using Neptuo.Navigation.TestsApp.Wpf.ViewModels.Rules;
@@ -34,11 +36,14 @@ namespace Neptuo.Navigation.TestsApp.Wpf
 
         private AsyncNavigator RegisterViews(AsyncNavigator navigator)
         {
-            navigator.Add<Main>(rule => new MainWindow(new MainViewModel(Navigator, ProductRepository)));
-            navigator.Add<Other>(rule => new OtherWindow());
-            navigator.Add<ProductList, List<Guid>>((rule, context) => new ProductListWindow(new ProductListViewModel(ProductRepository), context), true);
+            navigator.Add(Factory.Getter<Window, IAsyncViewFactoryContext<Main>>(CreateMain));
+            navigator.Add(Factory.Getter<Window, IAsyncViewFactoryContext<Other>>(context => new OtherWindow()));
+            navigator.Add(Factory.Getter<Window, IAsyncViewFactoryContext<ProductList, List<Guid>>>(context => new ProductListWindow(new ProductListViewModel(ProductRepository), context.ViewContext)), true);
             return navigator;
         }
+
+        private Window CreateMain(IAsyncViewFactoryContext<Main> context) 
+            => new MainWindow(new MainViewModel(Navigator, ProductRepository));
     }
 
     class Navigator : INavigator

@@ -1,4 +1,7 @@
-﻿using Neptuo.Navigation.Rules;
+﻿using Neptuo;
+using Neptuo.Activators;
+using Neptuo.Navigation.Registration;
+using Neptuo.Navigation.Rules;
 using Neptuo.Navigation.Views;
 using System;
 using System.Collections.Generic;
@@ -21,13 +24,13 @@ namespace Neptuo.Navigation.Execution
             this.app = app;
         }
 
-        public void Add<TRule, TResult>(Func<TRule, IViewContext<TResult>, Window> factory, bool isModal = false)
+        public void Add<TRule, TResult>(IFactory<Window, IAsyncViewFactoryContext<TRule, TResult>> factory, bool isModal = false)
             where TRule : IAsyncRule<TResult>
         {
             factories.Add(new ViewRule<TRule, TResult>(factory, isModal));
         }
 
-        public void Add<TRule>(Func<TRule, Window> factory, bool isModal = false)
+        public void Add<TRule>(IFactory<Window, IAsyncViewFactoryContext<TRule>> factory, bool isModal = false)
         {
             factories.Add(new ViewRule<TRule>(factory, isModal));
         }
@@ -127,9 +130,9 @@ namespace Neptuo.Navigation.Execution
 
         class ViewRule<TRule> : ViewRule
         {
-            private readonly Func<TRule, Window> factory;
+            private readonly IFactory<Window, IAsyncViewFactoryContext<TRule>> factory;
 
-            public ViewRule(Func<TRule, Window> factory, bool isModal)
+            public ViewRule(IFactory<Window, IAsyncViewFactoryContext<TRule>> factory, bool isModal)
             {
                 Ensure.NotNull(factory, "factory");
                 this.factory = factory;
@@ -139,18 +142,18 @@ namespace Neptuo.Navigation.Execution
             }
 
             public override Window Open(object rule, ViewContext viewContext)
-                => OpenOverride((TRule)rule);
+                => OpenOverride((TRule)rule, (IAsyncViewContext)viewContext);
 
-            protected Window OpenOverride(TRule rule)
-                => factory(rule);
+            protected Window OpenOverride(TRule rule, IAsyncViewContext viewContext)
+                => factory.Create(new AsyncViewFactoryContext<TRule>(rule, viewContext));
         }
 
         class ViewRule<TRule, TResult> : ViewRule
             where TRule : IAsyncRule<TResult>
         {
-            private readonly Func<TRule, IViewContext<TResult>, Window> factory;
+            private readonly IFactory<Window, IAsyncViewFactoryContext<TRule, TResult>> factory;
 
-            public ViewRule(Func<TRule, IViewContext<TResult>, Window> factory, bool isModal)
+            public ViewRule(IFactory<Window, IAsyncViewFactoryContext<TRule, TResult>> factory, bool isModal)
             {
                 Ensure.NotNull(factory, "factory");
                 this.factory = factory;
@@ -162,8 +165,8 @@ namespace Neptuo.Navigation.Execution
             public override Window Open(object rule, ViewContext viewContext)
                 => OpenOverride((TRule)rule, (IAsyncViewContext<TResult>)viewContext);
 
-                => factory(rule, viewContext);
             protected Window OpenOverride(TRule rule, IAsyncViewContext<TResult> viewContext)
+                => factory.Create(new AsyncViewFactoryContext<TRule, TResult>(rule, viewContext));
         }
 
         abstract class ViewContext
@@ -175,8 +178,7 @@ namespace Neptuo.Navigation.Execution
             public abstract void OnClose();
         }
 
-        class ViewContext<T> : ViewContext, IViewContext<T>
-        class ViewContext<T> : ViewContext, IAsyncViewContext<T>
+        class ViewContext<T> : ViewContext, IAsyncViewContext<T>, IAsyncViewContext
         {
             public TaskCompletionSource<T> TaskSource { get; }
             public T Result { get; set; }
@@ -195,6 +197,43 @@ namespace Neptuo.Navigation.Execution
             {
                 Result = result;
                 Window.Close();
+            }
+
+            public void Close()
+            {
+                Result = default(T);
+                Window.Close();
+            }
+        }
+
+        class AsyncViewFactoryContext<TRule, TResult> : IAsyncViewFactoryContext<TRule, TResult>
+            where TRule : IAsyncRule<TResult>
+        {
+            public TRule Rule { get; private set; }
+            public IAsyncViewContext<TResult> ViewContext { get; private set; }
+            public INavigator Navigator => throw new NotImplementedException();
+
+            public AsyncViewFactoryContext(TRule rule, IAsyncViewContext<TResult> viewContext)
+            {
+                Ensure.NotNull(rule, "rule");
+                Ensure.NotNull(viewContext, "viewContext");
+                Rule = rule;
+                ViewContext = viewContext;
+            }
+        }
+
+        class AsyncViewFactoryContext<TRule> : IAsyncViewFactoryContext<TRule>
+        {
+            public TRule Rule { get; private set; }
+            public IAsyncViewContext ViewContext { get; private set; }
+            public INavigator Navigator => throw new NotImplementedException();
+
+            public AsyncViewFactoryContext(TRule rule, IAsyncViewContext viewContext)
+            {
+                Ensure.NotNull(rule, "rule");
+                Ensure.NotNull(viewContext, "viewContext");
+                Rule = rule;
+                ViewContext = viewContext;
             }
         }
     }
