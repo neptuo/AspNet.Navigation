@@ -160,10 +160,10 @@ namespace Neptuo.Navigation.Execution
             }
 
             public override Window Open(object rule, ViewContext viewContext)
-                => OpenOverride((TRule)rule, (IViewContext<TResult>)viewContext);
+                => OpenOverride((TRule)rule, (IAsyncViewContext<TResult>)viewContext);
 
-            protected Window OpenOverride(TRule rule, IViewContext<TResult> viewContext)
                 => factory(rule, viewContext);
+            protected Window OpenOverride(TRule rule, IAsyncViewContext<TResult> viewContext)
         }
 
         abstract class ViewContext
@@ -176,6 +176,7 @@ namespace Neptuo.Navigation.Execution
         }
 
         class ViewContext<T> : ViewContext, IViewContext<T>
+        class ViewContext<T> : ViewContext, IAsyncViewContext<T>
         {
             public TaskCompletionSource<T> TaskSource { get; }
             public T Result { get; set; }

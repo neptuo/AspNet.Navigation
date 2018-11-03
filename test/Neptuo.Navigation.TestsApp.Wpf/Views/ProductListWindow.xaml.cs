@@ -22,9 +22,9 @@ namespace Neptuo.Navigation.TestsApp.Wpf.Views
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        private readonly IViewContext<List<Guid>> viewContext;
+        private readonly IAsyncViewContext<List<Guid>> viewContext;
 
-        public ProductListWindow(ProductListViewModel viewModel, IViewContext<List<Guid>> viewContext)
+        public ProductListWindow(ProductListViewModel viewModel, IAsyncViewContext<List<Guid>> viewContext)
         {
             Ensure.NotNull(viewModel, "viewModel");
             this.viewContext = viewContext;
